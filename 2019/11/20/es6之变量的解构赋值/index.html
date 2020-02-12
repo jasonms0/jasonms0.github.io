@@ -79,17 +79,17 @@
 
 
 
-<meta name="description" content="es6之变量的解构赋值ES6解构：es6允许按照一定模式，从数组和对象中提取值，对变量进行赋值，这被称之为解构 1.数组的解构赋值1234567891011121314var [a,b,c] = [1,2,3];console.log(a);//1console.log(b);//2console.log(c);//3//本质上这种写法属于‘模式匹配‘，只要等号两边的模式相同，左边的变量就会被赋予">
+<meta name="description" content="ES6结构赋值ES6解构：es6允许按照一定模式，从数组和对象中提取值，对变量进行赋值，这被称之为解构 1.数组的解构赋值1234567891011121314var [a,b,c] = [1,2,3];console.log(a);//1console.log(b);//2console.log(c);//3//本质上这种写法属于‘模式匹配‘，只要等号两边的模式相同，左边的变量就会被赋予对应的值">
 <meta property="og:type" content="article">
 <meta property="og:title" content="杰森的个人微博">
 <meta property="og:url" content="http://yoursite.com/2019/11/20/es6之变量的解构赋值/index.html">
 <meta property="og:site_name" content="杰森的个人微博">
-<meta property="og:description" content="es6之变量的解构赋值ES6解构：es6允许按照一定模式，从数组和对象中提取值，对变量进行赋值，这被称之为解构 1.数组的解构赋值1234567891011121314var [a,b,c] = [1,2,3];console.log(a);//1console.log(b);//2console.log(c);//3//本质上这种写法属于‘模式匹配‘，只要等号两边的模式相同，左边的变量就会被赋予">
+<meta property="og:description" content="ES6结构赋值ES6解构：es6允许按照一定模式，从数组和对象中提取值，对变量进行赋值，这被称之为解构 1.数组的解构赋值1234567891011121314var [a,b,c] = [1,2,3];console.log(a);//1console.log(b);//2console.log(c);//3//本质上这种写法属于‘模式匹配‘，只要等号两边的模式相同，左边的变量就会被赋予对应的值">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-11-20T12:59:08.258Z">
+<meta property="og:updated_time" content="2020-02-12T09:41:42.592Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="杰森的个人微博">
-<meta name="twitter:description" content="es6之变量的解构赋值ES6解构：es6允许按照一定模式，从数组和对象中提取值，对变量进行赋值，这被称之为解构 1.数组的解构赋值1234567891011121314var [a,b,c] = [1,2,3];console.log(a);//1console.log(b);//2console.log(c);//3//本质上这种写法属于‘模式匹配‘，只要等号两边的模式相同，左边的变量就会被赋予">
+<meta name="twitter:description" content="ES6结构赋值ES6解构：es6允许按照一定模式，从数组和对象中提取值，对变量进行赋值，这被称之为解构 1.数组的解构赋值1234567891011121314var [a,b,c] = [1,2,3];console.log(a);//1console.log(b);//2console.log(c);//3//本质上这种写法属于‘模式匹配‘，只要等号两边的模式相同，左边的变量就会被赋予对应的值">
 
 
 
@@ -299,7 +299,7 @@
       
 
       
-        <h1 id="es6之变量的解构赋值"><a href="#es6之变量的解构赋值" class="headerlink" title="es6之变量的解构赋值"></a>es6之变量的解构赋值</h1><p>ES6解构：es6允许按照一定模式，从数组和对象中提取值，对变量进行赋值，这被称之为解构</p>
+        <h3 id="ES6结构赋值"><a href="#ES6结构赋值" class="headerlink" title="ES6结构赋值"></a>ES6结构赋值</h3><p>ES6解构：es6允许按照一定模式，从数组和对象中提取值，对变量进行赋值，这被称之为解构</p>
 <h3 id="1-数组的解构赋值"><a href="#1-数组的解构赋值" class="headerlink" title="1.数组的解构赋值"></a><strong>1.数组的解构赋值</strong></h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> [a,b,c] = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>];</span><br><span class="line"><span class="built_in">console</span>.log(a);<span class="comment">//1</span></span><br><span class="line"><span class="built_in">console</span>.log(b);<span class="comment">//2</span></span><br><span class="line"><span class="built_in">console</span>.log(c);<span class="comment">//3</span></span><br><span class="line"><span class="comment">//本质上这种写法属于‘模式匹配‘，只要等号两边的模式相同，左边的变量就会被赋予对应的值</span></span><br><span class="line"><span class="keyword">let</span> [foo,[bar]] = [<span class="string">"111"</span>,[<span class="string">"abc"</span>]];</span><br><span class="line"><span class="built_in">console</span>.log(bar); <span class="comment">//abc</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> [, ,third] = [<span class="string">"foo"</span>,<span class="string">"bar"</span>,<span class="string">"baz"</span>];</span><br><span class="line"><span class="built_in">console</span>.log(third); <span class="comment">//baz</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> [x,y,z] = [<span class="string">'hah'</span>];</span><br><span class="line"><span class="built_in">console</span>.log(y); <span class="comment">//undefined</span></span><br><span class="line"><span class="comment">//如果解构不成功，变量的值就等于undefined</span></span><br></pre></td></tr></table></figure>
 
 <p>解构一般有三种情况，完全解构，不完全解构，解构不成功,在上述例子中存在完全解构和解构不成功的例子，下面来看一下不完全解构的例子</p>
@@ -445,7 +445,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-count">3</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -498,7 +498,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#es6之变量的解构赋值"><span class="nav-number">1.</span> <span class="nav-text">es6之变量的解构赋值</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-数组的解构赋值"><span class="nav-number">1.0.1.</span> <span class="nav-text">1.数组的解构赋值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-默认值"><span class="nav-number">1.0.2.</span> <span class="nav-text">2. 默认值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-对象的解构赋值"><span class="nav-number">1.0.3.</span> <span class="nav-text">3. 对象的解构赋值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-字符串的解构赋值"><span class="nav-number">1.0.4.</span> <span class="nav-text">4. 字符串的解构赋值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-数值和布尔值的解构赋值"><span class="nav-number">1.0.5.</span> <span class="nav-text">5. 数值和布尔值的解构赋值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-函数参数的解构赋值"><span class="nav-number">1.0.6.</span> <span class="nav-text">6.函数参数的解构赋值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-解构用途"><span class="nav-number">1.0.7.</span> <span class="nav-text">7. 解构用途</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#7-1交换变量的值"><span class="nav-number">1.0.7.1.</span> <span class="nav-text">7.1交换变量的值</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-2从函数返回多个值"><span class="nav-number">1.0.7.2.</span> <span class="nav-text">7.2从函数返回多个值</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-3函数参数的定义"><span class="nav-number">1.0.7.3.</span> <span class="nav-text">7.3函数参数的定义</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#ES6结构赋值"><span class="nav-number">1.</span> <span class="nav-text">ES6结构赋值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-数组的解构赋值"><span class="nav-number">2.</span> <span class="nav-text">1.数组的解构赋值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-默认值"><span class="nav-number">3.</span> <span class="nav-text">2. 默认值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-对象的解构赋值"><span class="nav-number">4.</span> <span class="nav-text">3. 对象的解构赋值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-字符串的解构赋值"><span class="nav-number">5.</span> <span class="nav-text">4. 字符串的解构赋值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-数值和布尔值的解构赋值"><span class="nav-number">6.</span> <span class="nav-text">5. 数值和布尔值的解构赋值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-函数参数的解构赋值"><span class="nav-number">7.</span> <span class="nav-text">6.函数参数的解构赋值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-解构用途"><span class="nav-number">8.</span> <span class="nav-text">7. 解构用途</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#7-1交换变量的值"><span class="nav-number">8.1.</span> <span class="nav-text">7.1交换变量的值</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-2从函数返回多个值"><span class="nav-number">8.2.</span> <span class="nav-text">7.2从函数返回多个值</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#7-3函数参数的定义"><span class="nav-number">8.3.</span> <span class="nav-text">7.3函数参数的定义</span></a></li></ol></li></ol></div>
             
 
           </div>

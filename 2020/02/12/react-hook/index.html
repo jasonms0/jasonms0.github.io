@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Hook 是什么？Hook 是一个特殊的函数，它可以让你“钩入” React 的特性。可以使你再不编写class的情况使用state以及其他特性。 什么时候我会用 Hook?1234// 无状态组件const Example = (props)=&amp;gt; &amp;#123;  return &amp;lt;h1&amp;gt;这是一个无状态组件&amp;lt;/h1&amp;gt;&amp;#125;  当你再写一个函数组件时，会发现需要向组">
+<meta property="og:type" content="article">
+<meta property="og:title" content="杰森的个人微博">
+<meta property="og:url" content="http://yoursite.com/2020/02/12/react-hook/index.html">
+<meta property="og:site_name" content="杰森的个人微博">
+<meta property="og:description" content="Hook 是什么？Hook 是一个特殊的函数，它可以让你“钩入” React 的特性。可以使你再不编写class的情况使用state以及其他特性。 什么时候我会用 Hook?1234// 无状态组件const Example = (props)=&amp;gt; &amp;#123;  return &amp;lt;h1&amp;gt;这是一个无状态组件&amp;lt;/h1&amp;gt;&amp;#125;  当你再写一个函数组件时，会发现需要向组">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2020-02-12T09:31:44.820Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="杰森的个人微博">
+<meta name="twitter:description" content="Hook 是什么？Hook 是一个特殊的函数，它可以让你“钩入” React 的特性。可以使你再不编写class的情况使用state以及其他特性。 什么时候我会用 Hook?1234// 无状态组件const Example = (props)=&amp;gt; &amp;#123;  return &amp;lt;h1&amp;gt;这是一个无状态组件&amp;lt;/h1&amp;gt;&amp;#125;  当你再写一个函数组件时，会发现需要向组">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2020/02/12/react-hook/">
+
+
+
+
+
+  <title> | 杰森的个人微博</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">杰森的个人微博</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">爱好游戏和旅游的码农</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/12/react-hook/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Jason">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/son.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="杰森的个人微博">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline"></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-02-12T17:28:39+08:00">
+                2020-02-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="Hook-是什么？"><a href="#Hook-是什么？" class="headerlink" title="Hook 是什么？"></a><a href="https://react-1251415695.cos-website.ap-chengdu.myqcloud.com/docs/hooks-intro.html" target="_blank" rel="noopener">Hook</a> 是什么？</h3><p>Hook 是一个特殊的函数，它可以让你“钩入” React 的特性。可以使你再不编写class的情况使用state以及其他特性。</p>
+<h3 id="什么时候我会用-Hook"><a href="#什么时候我会用-Hook" class="headerlink" title="什么时候我会用 Hook?"></a>什么时候我会用 Hook?</h3><figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 无状态组件</span></span><br><span class="line"><span class="keyword">const</span> Example = <span class="function">(<span class="params">props</span>)=&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> &lt;h1&gt;这是一个无状态组件&lt;/h1&gt;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>当你再写一个函数组件时，会发现需要向组件内添加一些内置数据，这时候我们就要将这个函数组件，转化成class组件了，现在我们可以有多一种的选择，在不改变本身代码的同时可以使用class组件中state属性，</p>
+<h4 id="下面将会用class组件和函数组件使用hook的对比"><a href="#下面将会用class组件和函数组件使用hook的对比" class="headerlink" title="下面将会用class组件和函数组件使用hook的对比"></a>下面将会用class组件和函数组件使用hook的对比</h4><figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React,&#123;Component&#125; <span class="keyword">from</span> <span class="string">'react'</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="class"><span class="keyword">class</span> <span class="title">Example</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</span><br><span class="line">              <span class="keyword">constructor</span>(props)&#123;</span><br><span class="line">                  <span class="keyword">super</span>(props)</span><br><span class="line">                  <span class="keyword">this</span>.state = &#123;</span><br><span class="line">                      count:<span class="number">0</span></span><br><span class="line">                  &#125;</span><br><span class="line">   &#125;</span><br><span class="line">    render() &#123;</span><br><span class="line">          <span class="keyword">return</span> &lt;div&gt;</span><br><span class="line">                &lt;h1&gt;当前数值:&#123;this.state.count&#125;&lt;/h1&gt;</span><br><span class="line">          &lt;button onClick=&#123;this.addCount&#125;&gt;点击+1&lt;/button&gt;</span><br><span class="line">          &lt;/div&gt;</span><br><span class="line">    &#125;</span><br><span class="line">    addCount = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">let</span> data = <span class="keyword">this</span>.state.count</span><br><span class="line">        <span class="keyword">this</span>.setState(&#123;</span><br><span class="line">            count:++data</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="现在我们使用Hook重构上面的代码"><a href="#现在我们使用Hook重构上面的代码" class="headerlink" title="现在我们使用Hook重构上面的代码"></a>现在我们使用Hook重构上面的代码</h4><figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React,&#123;useState&#125; <span class="keyword">from</span> <span class="string">'react'</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="function"><span class="keyword">function</span> <span class="title">Example</span>(<span class="params">props</span>)=&gt;</span>&#123; </span><br><span class="line">       <span class="keyword">const</span> [count,setCount] = useState(<span class="number">0</span>)</span><br><span class="line">       <span class="keyword">return</span> &lt;div&gt;</span><br><span class="line">              &lt;h3&gt;当前数值:&#123;count&#125;&lt;/h3&gt;</span><br><span class="line">              &lt;button onClick=&#123;()=&gt;&#123;setCount(count+1)&#125;&#125;&gt;点击+1&lt;/button&gt;</span><br><span class="line">       &lt;/div&gt;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="1-State-Hook"><a href="#1-State-Hook" class="headerlink" title="1.State Hook"></a>1.State Hook</h3><p>useState在函数组件调用来添加一个”内部”的state,react再重复渲染时，会保留这个state,useState会返回一对值<code>值和一个设置值的函数</code>,当我们在调用时setData函数生成一个新的data时，react会重新渲染并保留它,依照顺序记录每一个state。</p>
+<ol>
+<li><p>一般来说，一个函数组件，在函数退出后变量就会”消失”，但是 state 中的变量会被 React 保留。</p>
+</li>
+<li><p>当我们点击按钮，调用setCount函数时，React会重新渲染这个组件，并把更新的count值传给这个组件</p>
+</li>
+<li><p>useState()接受一个参数为默认值，该方法返回一个数组，第一个值为定义data的值，第二个为更新data的方法，他们总是成对出现的，</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 数组解构</span></span><br><span class="line"><span class="keyword">const</span> [count,setCount] = useState(<span class="number">0</span>)</span><br><span class="line"><span class="comment">// 等价于</span></span><br><span class="line"><span class="keyword">let</span> arr = useState(<span class="number">0</span>)</span><br><span class="line"><span class="keyword">let</span> count = arr[<span class="number">0</span>]</span><br><span class="line"><span class="keyword">let</span> setCount = arr[<span class="number">1</span>]</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>声明多个useState()</p>
+</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">ExampleWithManyStates</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> [age, setAge] = useState(<span class="number">42</span>);</span><br><span class="line">  <span class="keyword">const</span> [fruit, setFruit] = useState(<span class="string">'banana'</span>);</span><br><span class="line">  <span class="keyword">const</span> [todos, setTodos] = useState([&#123; <span class="attr">text</span>: <span class="string">'Learn Hooks'</span> &#125;]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-Effect-Hook"><a href="#2-Effect-Hook" class="headerlink" title="2.Effect Hook"></a>2.Effect Hook</h3><ul>
+<li>它与组件的生命周期钩子componentDidMount，componentDidUpdate，componentWillUnmount，具有相同的作用，给函数增加操作<a href="https://www.cnblogs.com/snandy/archive/2011/08/14/2137898.html" target="_blank" rel="noopener">副作用</a>的能力</li>
+<li>在调用这个hook时，就是告诉React在完成对DOM的更改后运行这个hook,在这里你可以访问到state和props</li>
+<li>hook 使用了闭包机制，无需js提供了解决方案的时候，引用react的API</li>
+<li>与class组件的对比</li>
+</ul>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Example</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>(props) &#123;</span><br><span class="line">    <span class="keyword">super</span>(props);</span><br><span class="line">    <span class="keyword">this</span>.state = &#123;</span><br><span class="line">      count: <span class="number">0</span></span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;</span><br><span class="line">  componentDidMount() &#123;</span><br><span class="line">    <span class="built_in">document</span>.title = <span class="string">`当前数值:<span class="subst">$&#123;<span class="keyword">this</span>.state.count&#125;</span>`</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  componentDidUpdate() &#123;</span><br><span class="line">    <span class="built_in">document</span>.title = <span class="string">`当前数值:<span class="subst">$&#123;<span class="keyword">this</span>.state.count&#125;</span>`</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      &lt;div&gt;</span><br><span class="line">        &lt;h3&gt;当前数值:&#123;<span class="keyword">this</span>.state.count&#125;&lt;<span class="regexp">/h3&gt;</span></span><br><span class="line"><span class="regexp">        &lt;button onClick=&#123;this.addCount&#125;&gt;</span></span><br><span class="line"><span class="regexp">        点击+1</span></span><br><span class="line"><span class="regexp">        &lt;/</span>button&gt;</span><br><span class="line">      &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">    );</span></span><br><span class="line"><span class="regexp">  &#125;</span></span><br><span class="line"><span class="regexp">  addCount = () =&gt; &#123;</span></span><br><span class="line"><span class="regexp">        let data = this.state.count</span></span><br><span class="line"><span class="regexp">        this.setState(&#123;</span></span><br><span class="line"><span class="regexp">            count:++data</span></span><br><span class="line"><span class="regexp">        &#125;)</span></span><br><span class="line"><span class="regexp">    &#125;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">/</span><span class="regexp">/ 简单实现</span></span><br><span class="line"><span class="regexp">function changeTitle()&#123;</span></span><br><span class="line"><span class="regexp">      document.title = `当前数值:$&#123;count&#125;`</span></span><br><span class="line"><span class="regexp">    &#125;</span></span><br><span class="line"><span class="regexp">  changeTitle()</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">/</span><span class="regexp">/ use effect</span></span><br><span class="line"><span class="regexp">import React, &#123; useState, useEffect &#125; from 'react';</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">function Example() &#123;</span></span><br><span class="line"><span class="regexp">  const [count, setCount] = useState(0);</span></span><br><span class="line"><span class="regexp">  useEffect(() =&gt; &#123;</span></span><br><span class="line"><span class="regexp">    document.title = `当前数值:$&#123;count&#125;`;</span></span><br><span class="line"><span class="regexp">  &#125;);</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">  return (</span></span><br><span class="line"><span class="regexp">    &lt;div&gt;</span></span><br><span class="line"><span class="regexp">      &lt;h3&gt;当前数值:&#123;count&#125;&lt;/</span>h3&gt;</span><br><span class="line">      &lt;button onClick=&#123;() =&gt; setCount(count + <span class="number">1</span>)&#125;&gt;</span><br><span class="line">        点击+<span class="number">1</span></span><br><span class="line">      &lt;<span class="regexp">/button&gt;</span></span><br><span class="line"><span class="regexp">    &lt;/</span>div&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>控制effect hook</strong></li>
+</ul>
+<ol>
+<li>组件在第一次渲染，和更新时都会调用useEffect。</li>
+<li>假如我们所改变的值是一样的，会不会在调用一次useEffect ? 会</li>
+<li>如果你只想调用一次这个effect hook，你可以传递一个[] =&gt; componentDidMount</li>
+<li>useEffect,第二个参数[var]，当且仅当这个参数发生改变时，才会调用这个effect hook,react会对前一次渲染的[var],与发生改变的[var] 进行比较，如果相等，则会跳过这个effect hook =&gt;  componentDidUpdate(升级版)</li>
+<li>return 一个函数 =&gt; componentWillUnmount</li>
+<li>不传 =&gt; componentDidMount+componentDidUpdate</li>
+<li>官方说明：会在未来版本中自动添加第二个参数<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React,&#123;useState,useEffect&#125; <span class="keyword">from</span> <span class="string">'react'</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span>  Hook_com = <span class="function">(<span class="params">props</span>)=&gt;</span>&#123;</span><br><span class="line">       <span class="keyword">const</span> [count,setCount] = useState(<span class="number">0</span>)</span><br><span class="line">       useEffect(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">           <span class="keyword">let</span> str = <span class="string">`当前数值:<span class="subst">$&#123;count&#125;</span>`</span></span><br><span class="line">           <span class="keyword">const</span> changeTitle = <span class="function">(<span class="params">c_str</span>)=&gt;</span>&#123;<span class="built_in">document</span>.title = c_str;&#125;</span><br><span class="line">           changeTitle(str)</span><br><span class="line">           <span class="keyword">return</span> <span class="function"><span class="params">()</span>=&gt;</span>&#123;</span><br><span class="line">              changeTitle(<span class="string">'hello Hook'</span>)    </span><br><span class="line">           &#125;</span><br><span class="line">       &#125;,[count]);</span><br><span class="line">       <span class="keyword">return</span> &lt;div className="hook_com"&gt;</span><br><span class="line">              &lt;h1&gt;当前数值:&#123;count&#125;&lt;/h1&gt;</span><br><span class="line">              &lt;button onClick=&#123;()=&gt;&#123;setCount(count+1)&#125;&#125;&gt;点击+1&lt;/button&gt;</span><br><span class="line">       &lt;/div&gt;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">// </span><br><span class="line">useEffect(() =&gt; &#123;</span><br><span class="line">         let str = `当前数值:$&#123;count&#125;`</span><br><span class="line">         const changeTitle = (c_str)=&gt;&#123;document.title = c_str&#125;</span><br><span class="line">         changeTitle(str)</span><br><span class="line">         return ()=&gt;&#123;</span><br><span class="line">            changeTitle(&apos;hello Hook&apos;)    </span><br><span class="line">         &#125;</span><br><span class="line">     &#125;);</span><br></pre></td></tr></table></figure>
+
+<p><strong>effect Hook支持使用多个，会按照代码次序依次执行</strong></p>
+<h3 id="3-context-Hook"><a href="#3-context-Hook" class="headerlink" title="3.context Hook"></a>3.context Hook</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">const value = useContext(MyContext)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>useContext()接受一个<code>React.createContext()</code>的返回值</strong></li>
+<li>useContext()<em>读取</em> context 的值以及订阅 context 的变化，由上层&lt;MyContext.provider /&gt; 的value props决定</li>
+<li>当距离最近的&lt;MyContext.provider /&gt; 更新时，会触发这个hook，重新渲染</li>
+</ul>
+<h3 id="4-Hook-规则"><a href="#4-Hook-规则" class="headerlink" title="4.Hook 规则"></a>4.Hook 规则</h3><ol>
+<li><p>只在最顶层使用 Hook<br> 不要在循环，条件或嵌套函数中调用<br> 保证 Hook 在每一次渲染中都按照同样的顺序被调用<br> React 怎么知道当前state是哪个state</p>
+ <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Form</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line"> <span class="keyword">const</span> [name1, setName1] = useState(<span class="string">'111'</span>);</span><br><span class="line"> <span class="keyword">const</span> [name2, setName2] = useState(<span class="string">'222'</span>);</span><br><span class="line"> <span class="keyword">const</span> [name3, setName3] = useState(<span class="string">'333'</span>);</span><br><span class="line"><span class="comment">// ....</span></span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+<p>function Form() {<br>  const [name1, setName1] = useState(‘111’);<br>  if(name1==’’){</p>
+<pre><code>const [name2, setName2] = useState(&apos;222&apos;);</code></pre><p>  }<br>  const [name3, setName3] = useState(‘333’);<br>  // …<br>}</p>
+<p> ```</p>
+</li>
+<li><p>只在 React 函数中调用 Hook<br>在自定义 Hook 中调用其他 Hook</p>
+</li>
+</ol>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/12/10/NextJs/" rel="next" title>
+                <i class="fa fa-chevron-left"></i> 
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/son.jpg" alt="Jason">
+            
+              <p class="site-author-name" itemprop="name">Jason</p>
+              <p class="site-description motion-element" itemprop="description">码农的春夏秋冬</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://jasonms0.github.io" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="http://www.zhihu.com/people/jasonms0" target="_blank" title="知乎">
+                      
+                        <i class="fa fa-fw fa-globe"></i>知乎</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Hook-是什么？"><span class="nav-number">1.</span> <span class="nav-text">Hook 是什么？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#什么时候我会用-Hook"><span class="nav-number">2.</span> <span class="nav-text">什么时候我会用 Hook?</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#下面将会用class组件和函数组件使用hook的对比"><span class="nav-number">2.1.</span> <span class="nav-text">下面将会用class组件和函数组件使用hook的对比</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#现在我们使用Hook重构上面的代码"><span class="nav-number">2.2.</span> <span class="nav-text">现在我们使用Hook重构上面的代码</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-State-Hook"><span class="nav-number">3.</span> <span class="nav-text">1.State Hook</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-Effect-Hook"><span class="nav-number">4.</span> <span class="nav-text">2.Effect Hook</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-context-Hook"><span class="nav-number">5.</span> <span class="nav-text">3.context Hook</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-Hook-规则"><span class="nav-number">6.</span> <span class="nav-text">4.Hook 规则</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jason</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
