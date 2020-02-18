@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="__proto__和 prototype的区别prototype属性函数有一个prototype属性，这个属性表示函数的原型  这个属性中有三部分信息：构造函数   所有实例公共的属性和方法 __proto__ __proto__属性对象有一个__proto__属性，他指向函数的原型 1234567891011121314151617  function Person(name,age)&amp;#123">
+<meta property="og:type" content="article">
+<meta property="og:title" content="原型、原型链及继承">
+<meta property="og:url" content="http://yoursite.com/2019/04/18/原型、原型链及继承/index.html">
+<meta property="og:site_name" content="杰森的个人微博">
+<meta property="og:description" content="__proto__和 prototype的区别prototype属性函数有一个prototype属性，这个属性表示函数的原型  这个属性中有三部分信息：构造函数   所有实例公共的属性和方法 __proto__ __proto__属性对象有一个__proto__属性，他指向函数的原型 1234567891011121314151617  function Person(name,age)&amp;#123">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/2019/04/18/原型、原型链及继承/..%5Cimages%5Cproto.jpg">
+<meta property="og:updated_time" content="2020-02-18T14:29:58.810Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="原型、原型链及继承">
+<meta name="twitter:description" content="__proto__和 prototype的区别prototype属性函数有一个prototype属性，这个属性表示函数的原型  这个属性中有三部分信息：构造函数   所有实例公共的属性和方法 __proto__ __proto__属性对象有一个__proto__属性，他指向函数的原型 1234567891011121314151617  function Person(name,age)&amp;#123">
+<meta name="twitter:image" content="http://yoursite.com/2019/04/18/原型、原型链及继承/..%5Cimages%5Cproto.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/04/18/原型、原型链及继承/">
+
+
+
+
+
+  <title>原型、原型链及继承 | 杰森的个人微博</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">杰森的个人微博</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">爱好游戏和旅游的码农</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/18/原型、原型链及继承/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Jason">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/son.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="杰森的个人微博">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">原型、原型链及继承</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-18T15:31:24+08:00">
+                2019-04-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="proto-和-prototype的区别"><a href="#proto-和-prototype的区别" class="headerlink" title="__proto__和 prototype的区别"></a><code>__proto__</code>和 prototype的区别</h2><h3 id="prototype属性"><a href="#prototype属性" class="headerlink" title="prototype属性"></a>prototype属性</h3><p>函数有一个prototype属性，这个属性表示函数的原型<br>  这个属性中有三部分信息：构造函数   所有实例公共的属性和方法 <code>__proto__</code></p>
+<h3 id="proto-属性"><a href="#proto-属性" class="headerlink" title="__proto__属性"></a><code>__proto__</code>属性</h3><p>对象有一个<code>__proto__</code>属性，他指向函数的原型</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params">name,age</span>)</span>&#123;</span><br><span class="line">      <span class="keyword">this</span>.name = name;</span><br><span class="line">      <span class="keyword">this</span>.age = age;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">var</span> p = <span class="keyword">new</span> Person(<span class="string">"zhangsan"</span>,<span class="number">18</span>);</span><br><span class="line">  </span><br><span class="line"></span><br><span class="line"><span class="number">3.</span>函数原型中的信息</span><br><span class="line">  p.__proto__ == Person.prototype;</span><br><span class="line">  p.constructor == Person;</span><br><span class="line">  Person.prototype.constructor == Person;</span><br><span class="line">  Person.prototype.__proto__ == <span class="built_in">Object</span>.prototype;</span><br><span class="line">  <span class="built_in">Object</span>.prototype.__proto__ == <span class="literal">null</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//对象.__proto__是隐式原型，函数.prototype是显示原型；</span></span><br><span class="line"><span class="comment">//函数.prototype：每一个函数创建之后都会拥有一个名为prototype的属性，这个属性指向函数的原型对象；</span></span><br><span class="line"><span class="comment">//对象.__proto__ ：javascript中任意的对象都有一个内置属性，在ES5之前没有标准的方法访问这个内置属性，但是大多数浏览器都支持通过__proto__来访问。</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="组合继承"><a href="#组合继承" class="headerlink" title="组合继承"></a>组合继承</h2><h3 id="继承的作用"><a href="#继承的作用" class="headerlink" title="继承的作用"></a>继承的作用</h3><p>把公共信息放在Person类中，其他类只要继承了Person，就可以拥有它的所有信息。</p>
+<h3 id="组合继承-1"><a href="#组合继承-1" class="headerlink" title="组合继承"></a>组合继承</h3><p>既继承属性又集成方法</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params">name,age</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.name = name;</span><br><span class="line">    <span class="keyword">this</span>.age = age;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Person.prototype.say = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"say方法"</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Student</span>(<span class="params">name,age,gender</span>)</span>&#123;</span><br><span class="line">    <span class="comment">//构造函数属性继承</span></span><br><span class="line">    Person.call(<span class="keyword">this</span>,name,age);</span><br><span class="line">    <span class="keyword">this</span>.gender = gender;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//原型继承</span></span><br><span class="line">Student.prototype = <span class="keyword">new</span> Person();</span><br><span class="line"></span><br><span class="line"><span class="comment">//构造函数继承只继承属性</span></span><br><span class="line"><span class="comment">//原型继承继承方法</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="..%5Cimages%5Cproto.jpg" alt="proto"></p>
+<h2 id="附录：数组去重"><a href="#附录：数组去重" class="headerlink" title="附录：数组去重"></a>附录：数组去重</h2><h3 id="利用ES6-Set去重（ES6中最常用）"><a href="#利用ES6-Set去重（ES6中最常用）" class="headerlink" title="利用ES6 Set去重（ES6中最常用）"></a>利用ES6 Set去重（ES6中最常用）</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">unique</span> (<span class="params">arr</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">Array</span>.from(<span class="keyword">new</span> <span class="built_in">Set</span>(arr))</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>,<span class="number">1</span>,<span class="string">'true'</span>,<span class="string">'true'</span>,<span class="literal">true</span>,<span class="literal">true</span>,<span class="number">15</span>,<span class="number">15</span>,<span class="literal">false</span>,<span class="literal">false</span>, <span class="literal">undefined</span>,<span class="literal">undefined</span>, <span class="literal">null</span>,<span class="literal">null</span>, <span class="literal">NaN</span>, <span class="literal">NaN</span>,<span class="string">'NaN'</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="string">'a'</span>, <span class="string">'a'</span>,&#123;&#125;,&#123;&#125;];</span><br><span class="line"><span class="built_in">console</span>.log(unique(arr))</span><br><span class="line"> <span class="comment">//[1, "true", true, 15, false, undefined, null, NaN, "NaN", 0, "a", &#123;&#125;, &#123;&#125;]</span></span><br></pre></td></tr></table></figure>
+
+<p>不考虑兼容性，这种去重的方法代码最少。这种方法还无法去掉“{}”空对象，后面的高阶方法会添加去掉重复“{}”的方法。</p>
+<h3 id="利用for嵌套for，然后splice去重（ES5中最常用）"><a href="#利用for嵌套for，然后splice去重（ES5中最常用）" class="headerlink" title="利用for嵌套for，然后splice去重（ES5中最常用）"></a>利用for嵌套for，然后splice去重（ES5中最常用）</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">unique</span>(<span class="params">arr</span>)</span>&#123;            </span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>; i&lt;arr.length; i++)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">var</span> j=i+<span class="number">1</span>; j&lt;arr.length; j++)&#123;</span><br><span class="line">                <span class="keyword">if</span>(arr[i]===arr[j])&#123;         <span class="comment">//第一个等同于第二个，splice方法删除第二个</span></span><br><span class="line">                    arr.splice(j,<span class="number">1</span>);</span><br><span class="line">                    j--;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    	<span class="keyword">return</span> arr;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">var</span> arr = [<span class="number">1</span>,<span class="number">1</span>,<span class="string">'true'</span>,<span class="string">'true'</span>,<span class="literal">true</span>,<span class="literal">true</span>,<span class="number">15</span>,<span class="number">15</span>,<span class="literal">false</span>,<span class="literal">false</span>, <span class="literal">undefined</span>,<span class="literal">undefined</span>, <span class="literal">null</span>,<span class="literal">null</span>, <span class="literal">NaN</span>, <span class="literal">NaN</span>,<span class="string">'NaN'</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="string">'a'</span>, <span class="string">'a'</span>,&#123;&#125;,&#123;&#125;];</span><br><span class="line">    <span class="built_in">console</span>.log(unique(arr))</span><br><span class="line">	<span class="comment">//[1, "true", 15, false, undefined, NaN, NaN, "NaN", "a", &#123;…&#125;, &#123;…&#125;]     </span></span><br><span class="line">	<span class="comment">//NaN和&#123;&#125;没有去重，两个null直接消失了</span></span><br></pre></td></tr></table></figure>
+
+<p>双层循环，外层循环元素，内层循环时比较值。值相同时，则删去这个值。</p>
+<h3 id="利用indexOf去重"><a href="#利用indexOf去重" class="headerlink" title="利用indexOf去重"></a>利用indexOf去重</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">unique</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (!<span class="built_in">Array</span>.isArray(arr)) &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'type error!'</span>)</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">var</span> array = [];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; arr.length; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (array .indexOf(arr[i]) === <span class="number">-1</span>) &#123;</span><br><span class="line">            array .push(arr[i])</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> array;</span><br><span class="line">&#125;</span><br><span class="line">    <span class="keyword">var</span> arr = [<span class="number">1</span>,<span class="number">1</span>,<span class="string">'true'</span>,<span class="string">'true'</span>,<span class="literal">true</span>,<span class="literal">true</span>,<span class="number">15</span>,<span class="number">15</span>,<span class="literal">false</span>,<span class="literal">false</span>, <span class="literal">undefined</span>,<span class="literal">undefined</span>, <span class="literal">null</span>,<span class="literal">null</span>, <span class="literal">NaN</span>, <span class="literal">NaN</span>,<span class="string">'NaN'</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="string">'a'</span>, <span class="string">'a'</span>,&#123;&#125;,&#123;&#125;];</span><br><span class="line">    <span class="built_in">console</span>.log(unique(arr))</span><br><span class="line">	<span class="comment">// [1, "true", true, 15, false, undefined, null, NaN, NaN, "NaN", 0, "a", &#123;…&#125;, &#123;…&#125;]  </span></span><br><span class="line">	<span class="comment">//NaN、&#123;&#125;没有去重</span></span><br></pre></td></tr></table></figure>
+
+<p>新建一个空的结果数组，for 循环原数组，判断结果数组是否存在当前元素，如果有相同的值则跳过，不相同则push进数组。</p>
+<h3 id="利用sort"><a href="#利用sort" class="headerlink" title="利用sort()"></a>利用sort()</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">unique</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (!<span class="built_in">Array</span>.isArray(arr)) &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'type error!'</span>)</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    arr = arr.sort()</span><br><span class="line">    <span class="keyword">var</span> arrry= [arr[<span class="number">0</span>]];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">1</span>; i &lt; arr.length; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (arr[i] !== arr[i<span class="number">-1</span>]) &#123;</span><br><span class="line">            arrry.push(arr[i]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> arrry;</span><br><span class="line">&#125;</span><br><span class="line">    <span class="keyword">var</span> arr = [<span class="number">1</span>,<span class="number">1</span>,<span class="string">'true'</span>,<span class="string">'true'</span>,<span class="literal">true</span>,<span class="literal">true</span>,<span class="number">15</span>,<span class="number">15</span>,<span class="literal">false</span>,<span class="literal">false</span>, <span class="literal">undefined</span>,<span class="literal">undefined</span>, <span class="literal">null</span>,<span class="literal">null</span>, <span class="literal">NaN</span>, <span class="literal">NaN</span>,<span class="string">'NaN'</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="string">'a'</span>, <span class="string">'a'</span>,&#123;&#125;,&#123;&#125;];</span><br><span class="line">    <span class="built_in">console</span>.log(unique(arr))</span><br><span class="line">    <span class="comment">// [0, 1, 15, "NaN", NaN, NaN, &#123;…&#125;, &#123;…&#125;, "a", false, null, true, "true", undefined]      </span></span><br><span class="line">    <span class="comment">//NaN、&#123;&#125;没有去重</span></span><br></pre></td></tr></table></figure>
+
+<p>利用sort()排序方法，然后根据排序后的结果进行遍历及相邻元素比对。</p>
+<h3 id="利用includes"><a href="#利用includes" class="headerlink" title="利用includes"></a>利用includes</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">unique</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (!<span class="built_in">Array</span>.isArray(arr)) &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'type error!'</span>)</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">var</span> array =[];</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; arr.length; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span>( !array.includes( arr[i]) ) &#123;<span class="comment">//includes 检测数组是否有某个值</span></span><br><span class="line">                    array.push(arr[i]);</span><br><span class="line">              &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> array</span><br><span class="line">    &#125;</span><br><span class="line">	<span class="keyword">var</span> arr = [<span class="number">1</span>,<span class="number">1</span>,<span class="string">'true'</span>,<span class="string">'true'</span>,<span class="literal">true</span>,<span class="literal">true</span>,<span class="number">15</span>,<span class="number">15</span>,<span class="literal">false</span>,<span class="literal">false</span>, <span class="literal">undefined</span>,<span class="literal">undefined</span>, <span class="literal">null</span>,<span class="literal">null</span>, <span class="literal">NaN</span>, <span class="literal">NaN</span>,<span class="string">'NaN'</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="string">'a'</span>, <span class="string">'a'</span>,&#123;&#125;,&#123;&#125;];</span><br><span class="line">    <span class="built_in">console</span>.log(unique(arr))</span><br><span class="line">    <span class="comment">//[1, "true", true, 15, false, undefined, null, NaN, "NaN", 0, "a", &#123;…&#125;, &#123;…&#125;]     </span></span><br><span class="line">    <span class="comment">//&#123;&#125;没有去重</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="利用filter"><a href="#利用filter" class="headerlink" title="利用filter"></a>利用filter</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">unique</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> arr.filter(<span class="function"><span class="keyword">function</span>(<span class="params">item, index, arr</span>) </span>&#123;</span><br><span class="line">    <span class="comment">//当前元素，在原始数组中的第一个索引==当前索引值，否则返回当前元素</span></span><br><span class="line">    <span class="keyword">return</span> arr.indexOf(item, <span class="number">0</span>) === index;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br><span class="line">    <span class="keyword">var</span> arr = [<span class="number">1</span>,<span class="number">1</span>,<span class="string">'true'</span>,<span class="string">'true'</span>,<span class="literal">true</span>,<span class="literal">true</span>,<span class="number">15</span>,<span class="number">15</span>,<span class="literal">false</span>,<span class="literal">false</span>, <span class="literal">undefined</span>,<span class="literal">undefined</span>, <span class="literal">null</span>,<span class="literal">null</span>, <span class="literal">NaN</span>, <span class="literal">NaN</span>,<span class="string">'NaN'</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="string">'a'</span>, <span class="string">'a'</span>,&#123;&#125;,&#123;&#125;];</span><br><span class="line">    <span class="built_in">console</span>.log(unique(arr))</span><br><span class="line">	<span class="comment">//[1, "true", true, 15, false, undefined, null, "NaN", 0, "a", &#123;…&#125;, &#123;…&#125;]</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="利用递归去重"><a href="#利用递归去重" class="headerlink" title="利用递归去重"></a>利用递归去重</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">unique</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> array= arr;</span><br><span class="line">        <span class="keyword">var</span> len = array.length;</span><br><span class="line"></span><br><span class="line">    array.sort(<span class="function"><span class="keyword">function</span>(<span class="params">a,b</span>)</span>&#123;   <span class="comment">//排序后更加方便去重</span></span><br><span class="line">        <span class="keyword">return</span> a - b;</span><br><span class="line">    &#125;)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">loop</span>(<span class="params">index</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(index &gt;= <span class="number">1</span>)&#123;</span><br><span class="line">            <span class="keyword">if</span>(array[index] === array[index<span class="number">-1</span>])&#123;</span><br><span class="line">                array.splice(index,<span class="number">1</span>);</span><br><span class="line">            &#125;</span><br><span class="line">            loop(index - <span class="number">1</span>);    <span class="comment">//递归loop，然后数组去重</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    loop(len<span class="number">-1</span>);</span><br><span class="line">    <span class="keyword">return</span> array;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>,<span class="number">1</span>,<span class="string">'true'</span>,<span class="string">'true'</span>,<span class="literal">true</span>,<span class="literal">true</span>,<span class="number">15</span>,<span class="number">15</span>,<span class="literal">false</span>,<span class="literal">false</span>, <span class="literal">undefined</span>,<span class="literal">undefined</span>, <span class="literal">null</span>,<span class="literal">null</span>, <span class="literal">NaN</span>, <span class="literal">NaN</span>,<span class="string">'NaN'</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="string">'a'</span>, <span class="string">'a'</span>,&#123;&#125;,&#123;&#125;];</span><br><span class="line"><span class="built_in">console</span>.log(unique(arr))</span><br><span class="line"><span class="comment">//[1, "a", "true", true, 15, false, 1, &#123;…&#125;, null, NaN, NaN, "NaN", 0, "a", &#123;…&#125;, undefined]</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="利用Map数据结构去重"><a href="#利用Map数据结构去重" class="headerlink" title="利用Map数据结构去重"></a>利用Map数据结构去重</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">arrayNonRepeatfy</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> map = <span class="keyword">new</span> <span class="built_in">Map</span>();</span><br><span class="line">  <span class="keyword">let</span> array = <span class="keyword">new</span> <span class="built_in">Array</span>();  <span class="comment">// 数组用于返回结果</span></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; arr.length; i++) &#123;</span><br><span class="line">    <span class="keyword">if</span>(map .has(arr[i])) &#123;  <span class="comment">// 如果有该key值</span></span><br><span class="line">      map .set(arr[i], <span class="literal">true</span>); </span><br><span class="line">    &#125; <span class="keyword">else</span> &#123; </span><br><span class="line">      map .set(arr[i], <span class="literal">false</span>);   <span class="comment">// 如果没有该key值</span></span><br><span class="line">      array .push(arr[i]);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125; </span><br><span class="line">  <span class="keyword">return</span> array ;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>,<span class="number">1</span>,<span class="string">'true'</span>,<span class="string">'true'</span>,<span class="literal">true</span>,<span class="literal">true</span>,<span class="number">15</span>,<span class="number">15</span>,<span class="literal">false</span>,<span class="literal">false</span>, <span class="literal">undefined</span>,<span class="literal">undefined</span>, <span class="literal">null</span>,<span class="literal">null</span>, <span class="literal">NaN</span>, <span class="literal">NaN</span>,<span class="string">'NaN'</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="string">'a'</span>, <span class="string">'a'</span>,&#123;&#125;,&#123;&#125;];</span><br><span class="line"><span class="built_in">console</span>.log(unique(arr))</span><br><span class="line"><span class="comment">//[1, "a", "true", true, 15, false, 1, &#123;…&#125;, null, NaN, NaN, "NaN", 0, "a", &#123;…&#125;, undefined]</span></span><br></pre></td></tr></table></figure>
+
+<p>创建一个空Map数据结构，遍历需要去重的数组，把数组的每一个元素作为key存到Map中。由于Map中不会出现相同的key值，所以最终得到的就是去重后的结果。</p>
+<h3 id="利用reduce-includes"><a href="#利用reduce-includes" class="headerlink" title="利用reduce+includes"></a>利用reduce+includes</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">unique</span>(<span class="params">arr</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> arr.reduce(<span class="function">(<span class="params">prev,cur</span>) =&gt;</span> prev.includes(cur) ? prev : [...prev,cur],[]);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>,<span class="number">1</span>,<span class="string">'true'</span>,<span class="string">'true'</span>,<span class="literal">true</span>,<span class="literal">true</span>,<span class="number">15</span>,<span class="number">15</span>,<span class="literal">false</span>,<span class="literal">false</span>, <span class="literal">undefined</span>,<span class="literal">undefined</span>, <span class="literal">null</span>,<span class="literal">null</span>, <span class="literal">NaN</span>, <span class="literal">NaN</span>,<span class="string">'NaN'</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="string">'a'</span>, <span class="string">'a'</span>,&#123;&#125;,&#123;&#125;];</span><br><span class="line"><span class="built_in">console</span>.log(unique(arr));</span><br><span class="line"><span class="comment">// [1, "true", true, 15, false, undefined, null, NaN, "NaN", 0, "a", &#123;…&#125;, &#123;…&#125;]</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="利用-…new-Set-arr"><a href="#利用-…new-Set-arr" class="headerlink" title="利用[…new Set(arr)]"></a>利用[…new Set(arr)]</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[...new <span class="built_in">Set</span>(arr)] </span><br><span class="line"><span class="comment">//代码就是这么少----（其实，严格来说并不算是一种，相对于第一种方法来说只是简化了代码）</span></span><br></pre></td></tr></table></figure>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/02/12/NextJs/" rel="next" title="NextJs">
+                <i class="fa fa-chevron-left"></i> NextJs
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/11/12/React-Hook/" rel="prev" title="React-Hook">
+                React-Hook <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/son.jpg" alt="Jason">
+            
+              <p class="site-author-name" itemprop="name">Jason</p>
+              <p class="site-description motion-element" itemprop="description">码农的春夏秋冬</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://jasonms0.github.io" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="http://www.zhihu.com/people/jasonms0" target="_blank" title="知乎">
+                      
+                        <i class="fa fa-fw fa-globe"></i>知乎</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#proto-和-prototype的区别"><span class="nav-number">1.</span> <span class="nav-text">__proto__和 prototype的区别</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#prototype属性"><span class="nav-number">1.1.</span> <span class="nav-text">prototype属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#proto-属性"><span class="nav-number">1.2.</span> <span class="nav-text">__proto__属性</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#组合继承"><span class="nav-number">2.</span> <span class="nav-text">组合继承</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#继承的作用"><span class="nav-number">2.1.</span> <span class="nav-text">继承的作用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#组合继承-1"><span class="nav-number">2.2.</span> <span class="nav-text">组合继承</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#附录：数组去重"><span class="nav-number">3.</span> <span class="nav-text">附录：数组去重</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#利用ES6-Set去重（ES6中最常用）"><span class="nav-number">3.1.</span> <span class="nav-text">利用ES6 Set去重（ES6中最常用）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#利用for嵌套for，然后splice去重（ES5中最常用）"><span class="nav-number">3.2.</span> <span class="nav-text">利用for嵌套for，然后splice去重（ES5中最常用）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#利用indexOf去重"><span class="nav-number">3.3.</span> <span class="nav-text">利用indexOf去重</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#利用sort"><span class="nav-number">3.4.</span> <span class="nav-text">利用sort()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#利用includes"><span class="nav-number">3.5.</span> <span class="nav-text">利用includes</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#利用filter"><span class="nav-number">3.6.</span> <span class="nav-text">利用filter</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#利用递归去重"><span class="nav-number">3.7.</span> <span class="nav-text">利用递归去重</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#利用Map数据结构去重"><span class="nav-number">3.8.</span> <span class="nav-text">利用Map数据结构去重</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#利用reduce-includes"><span class="nav-number">3.9.</span> <span class="nav-text">利用reduce+includes</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#利用-…new-Set-arr"><span class="nav-number">3.10.</span> <span class="nav-text">利用[…new Set(arr)]</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jason</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
