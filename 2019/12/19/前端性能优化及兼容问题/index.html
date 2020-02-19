@@ -86,7 +86,7 @@
 <meta property="og:site_name" content="杰森的个人微博">
 <meta property="og:description" content="前端性能优化减少http请求数量和体积​    -压缩 css、js 文件    -合并 js、css 文件，减少 http 请求    -使用CSS Sprites图，合并多个CSS图片，合理使用图片压缩    -合理使用http缓存，减少http请求    -使用外部的css和js以减少服务器的压力 ​     css和script的位置​    把 css 样式引入放在&amp;lt;head&amp;gt">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-02-19T12:38:47.095Z">
+<meta property="og:updated_time" content="2020-02-19T12:40:25.688Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="前端性能优化及兼容问题">
 <meta name="twitter:description" content="前端性能优化减少http请求数量和体积​    -压缩 css、js 文件    -合并 js、css 文件，减少 http 请求    -使用CSS Sprites图，合并多个CSS图片，合理使用图片压缩    -合理使用http缓存，减少http请求    -使用外部的css和js以减少服务器的压力 ​     css和script的位置​    把 css 样式引入放在&amp;lt;head&amp;gt">
@@ -301,7 +301,7 @@
       
         <h2 id="前端性能优化"><a href="#前端性能优化" class="headerlink" title="前端性能优化"></a>前端性能优化</h2><h3 id="减少http请求数量和体积"><a href="#减少http请求数量和体积" class="headerlink" title="减少http请求数量和体积"></a>减少http请求数量和体积</h3><p>​    -压缩 css、js 文件<br>    -合并 js、css 文件，减少 http 请求<br>    -使用CSS Sprites图，合并多个CSS图片，合理使用图片压缩<br>    -合理使用http缓存，减少http请求<br>    -使用外部的css和js以减少服务器的压力</p>
 <p>​    </p>
-<h3 id="css和script的位置"><a href="#css和script的位置" class="headerlink" title="css和script的位置"></a>css和script的位置</h3><p>​    <code>把 css 样式引入放在&lt;head&gt;标签中，把 &lt;script&gt;资源引入放在&lt;/body&gt;闭合之前。</code><br>    外链脚本在加载时却常常阻塞其他资源，例如在脚本加载完成之前，它后面的图片、样式以及其他脚本都处于阻塞状态，直到脚本加载完成后才会开始加载。如果将脚本放在比较靠前的位置，则会影响整个页面的加载速度从而影响用户体验。所以说尽可能的将脚本往后挪，减少对并发下载的影响</p>
+<h3 id="css和script的位置"><a href="#css和script的位置" class="headerlink" title="css和script的位置"></a>css和script的位置</h3><p>​    把 css 样式引入放在<code>&lt;head&gt;</code>标签中，把 <code>&lt;script&gt;</code>资源引入放在<code>&lt;/body&gt;</code>闭合之前。<br>    外链脚本在加载时却常常阻塞其他资源，例如在脚本加载完成之前，它后面的图片、样式以及其他脚本都处于阻塞状态，直到脚本加载完成后才会开始加载。如果将脚本放在比较靠前的位置，则会影响整个页面的加载速度从而影响用户体验。所以说尽可能的将脚本往后挪，减少对并发下载的影响</p>
 <h3 id="DOM操作优化"><a href="#DOM操作优化" class="headerlink" title="DOM操作优化"></a>DOM操作优化</h3><p>​    -要避免在document上直接进行频繁的DOM操作(用innerHTML代替DOM操作)，缓存DOM节点查找的结果<br>    -使用classname代替大量的内联样式修改<br>    -对于复杂的UI元素，设置position为absolute或fixed<br>    -在js动画和css动画之间尽量使用css动画<br>    -适当使用canvas<br>    -使用事件代理<br>    -避免使用eval或Function，每次 eval 或 Function 构造函数作用于字符串表示的源代码时，脚本引擎都需要将源代码转换成可执行代码，这是很消耗资源的操作<br>    -避免大量的字符串拼接，可以使用数组的join方法</p>
 <h3 id="CSS选择符优化"><a href="#CSS选择符优化" class="headerlink" title="CSS选择符优化"></a>CSS选择符优化</h3><p>​    -避免使用通配符选择器，避免使用后代选择器<br>    -选择器匹配是从右向左匹配的，选择器语句链越短，浏览器的匹配速度越快<br>    -避免使用标签和通用选择器作为关键选择器，因为它们会匹配大量的元素，浏览器必须要进行大量的工作<br>    -搞清楚哪些 CSS 属性会触发重新布局（reflow）、重绘（repaint）。在写样式时，避免触发重新布局的可能<br>    -减少使用昂贵的属性，所有需要浏览器进行操作或计算的属性相对而言都需要花费更大的代价。box-shadow/border-radius/filter/透明度/:nth-child等<br>    -不要使用@import<br>    -尽量减少css表达式的使用  background-color: expression((new Date()).getHours()%2?”#FFFFFF”: “#000000” );</p>
 <h2 id="HTML常见兼容性问题"><a href="#HTML常见兼容性问题" class="headerlink" title="HTML常见兼容性问题"></a>HTML常见兼容性问题</h2><h3 id="IE不支持h5新标签和c3媒体查询的问题"><a href="#IE不支持h5新标签和c3媒体查询的问题" class="headerlink" title="IE不支持h5新标签和c3媒体查询的问题"></a>IE不支持h5新标签和c3媒体查询的问题</h3><p>引入html5shiv.js在IE浏览器下创建h5标签<br>引入respond.js让IE浏览器支持C3的媒体查询</p>
