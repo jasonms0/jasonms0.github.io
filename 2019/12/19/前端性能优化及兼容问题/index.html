@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="前端性能优化减少http请求数量和体积12345-压缩 css、js 文件-合并 js、css 文件，减少 http 请求-使用CSS Sprites图，合并多个CSS图片，合理使用图片压缩-合理使用http缓存，减少http请求-使用外部的css和js以减少服务器的压力  ​     css和script的位置12把 css 样式引入放在&amp;lt;head&amp;gt;标签中，把 &amp;lt;script&amp;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="前端性能优化及兼容问题">
+<meta property="og:url" content="http://yoursite.com/2019/12/19/前端性能优化及兼容问题/index.html">
+<meta property="og:site_name" content="杰森的个人微博">
+<meta property="og:description" content="前端性能优化减少http请求数量和体积12345-压缩 css、js 文件-合并 js、css 文件，减少 http 请求-使用CSS Sprites图，合并多个CSS图片，合理使用图片压缩-合理使用http缓存，减少http请求-使用外部的css和js以减少服务器的压力  ​     css和script的位置12把 css 样式引入放在&amp;lt;head&amp;gt;标签中，把 &amp;lt;script&amp;">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2020-02-19T11:48:13.272Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="前端性能优化及兼容问题">
+<meta name="twitter:description" content="前端性能优化减少http请求数量和体积12345-压缩 css、js 文件-合并 js、css 文件，减少 http 请求-使用CSS Sprites图，合并多个CSS图片，合理使用图片压缩-合理使用http缓存，减少http请求-使用外部的css和js以减少服务器的压力  ​     css和script的位置12把 css 样式引入放在&amp;lt;head&amp;gt;标签中，把 &amp;lt;script&amp;">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/12/19/前端性能优化及兼容问题/">
+
+
+
+
+
+  <title>前端性能优化及兼容问题 | 杰森的个人微博</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">杰森的个人微博</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">爱好游戏和旅游的码农</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/19/前端性能优化及兼容问题/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Jason">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/son.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="杰森的个人微博">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">前端性能优化及兼容问题</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-12-19T17:48:29+08:00">
+                2019-12-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="前端性能优化"><a href="#前端性能优化" class="headerlink" title="前端性能优化"></a>前端性能优化</h2><h3 id="减少http请求数量和体积"><a href="#减少http请求数量和体积" class="headerlink" title="减少http请求数量和体积"></a>减少http请求数量和体积</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">-压缩 css、js 文件</span><br><span class="line">-合并 js、css 文件，减少 http 请求</span><br><span class="line">-使用CSS Sprites图，合并多个CSS图片，合理使用图片压缩</span><br><span class="line">-合理使用http缓存，减少http请求</span><br><span class="line">-使用外部的css和js以减少服务器的压力</span><br></pre></td></tr></table></figure>
+
+<p>​    </p>
+<h3 id="css和script的位置"><a href="#css和script的位置" class="headerlink" title="css和script的位置"></a>css和script的位置</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">把 css 样式引入放在&lt;head&gt;标签中，把 &lt;script&gt;资源引入放在&lt;<span class="regexp">/body&gt;闭合之前。</span></span><br><span class="line"><span class="regexp">外链脚本在加载时却常常阻塞其他资源，例如在脚本加载完成之前，它后面的图片、样式以及其他脚本都处于阻塞状态，直到脚本加载完成后才会开始加载。如果将脚本放在比较靠前的位置，则会影响整个页面的加载速度从而影响用户体验。所以说尽可能的将脚本往后挪，减少对并发下载的影响</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="DOM操作优化"><a href="#DOM操作优化" class="headerlink" title="DOM操作优化"></a>DOM操作优化</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">-要避免在<span class="built_in">document</span>上直接进行频繁的DOM操作(用innerHTML代替DOM操作)，缓存DOM节点查找的结果</span><br><span class="line">-使用classname代替大量的内联样式修改</span><br><span class="line">-对于复杂的UI元素，设置position为absolute或fixed</span><br><span class="line">-在js动画和css动画之间尽量使用css动画</span><br><span class="line">-适当使用canvas</span><br><span class="line">-使用事件代理</span><br><span class="line">-避免使用<span class="built_in">eval</span>或<span class="built_in">Function</span>，每次 <span class="built_in">eval</span> 或 <span class="built_in">Function</span> 构造函数作用于字符串表示的源代码时，脚本引擎都需要将源代码转换成可执行代码，这是很消耗资源的操作 </span><br><span class="line">   -避免大量的字符串拼接，可以使用数组的join方法</span><br></pre></td></tr></table></figure>
+
+<h3 id="CSS选择符优化"><a href="#CSS选择符优化" class="headerlink" title="CSS选择符优化"></a>CSS选择符优化</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">-避免使用通配符选择器，避免使用后代选择器</span><br><span class="line">-选择器匹配是从右向左匹配的，选择器语句链越短，浏览器的匹配速度越快</span><br><span class="line">-避免使用标签和通用选择器作为关键选择器，因为它们会匹配大量的元素，浏览器必须要进行大量的工作</span><br><span class="line">-搞清楚哪些 CSS 属性会触发重新布局（reflow）、重绘（repaint）。在写样式时，避免触发重新布局的可能</span><br><span class="line">-减少使用昂贵的属性，所有需要浏览器进行操作或计算的属性相对而言都需要花费更大的代价。box-shadow/border-radius/filter/透明度/:nth-child等</span><br><span class="line">-不要使用@<span class="keyword">import</span></span><br><span class="line">   -尽量减少css表达式的使用  background-color: expression((<span class="keyword">new</span> <span class="built_in">Date</span>()).getHours()%<span class="number">2</span>?<span class="string">"#FFFFFF"</span>: <span class="string">"#000000"</span> );</span><br></pre></td></tr></table></figure>
+
+<h2 id="HTML常见兼容性问题"><a href="#HTML常见兼容性问题" class="headerlink" title="HTML常见兼容性问题"></a>HTML常见兼容性问题</h2><h3 id="IE不支持h5新标签和c3媒体查询的问题"><a href="#IE不支持h5新标签和c3媒体查询的问题" class="headerlink" title="IE不支持h5新标签和c3媒体查询的问题"></a>IE不支持h5新标签和c3媒体查询的问题</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">引入html5shiv.js在IE浏览器下创建h5标签</span><br><span class="line">引入respond.js让IE浏览器支持C3的媒体查询</span><br></pre></td></tr></table></figure>
+
+<h3 id="js代码兼容性问题"><a href="#js代码兼容性问题" class="headerlink" title="js代码兼容性问题"></a>js代码兼容性问题</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">根据兼容需求选择技术框架/库(jquery)</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> ev = ev || <span class="built_in">window</span>.event</span><br><span class="line"><span class="built_in">document</span>.documentElement.clientWidth || <span class="built_in">document</span>.body.clientWidth</span><br><span class="line"><span class="keyword">var</span> target = ev.srcElement||ev.target</span><br></pre></td></tr></table></figure>
+
+<h3 id="css兼容性问题"><a href="#css兼容性问题" class="headerlink" title="css兼容性问题"></a>css兼容性问题</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">A.使用Reset CSS或Normalize.css做样式的重置</span><br><span class="line">B.使用autoprefixer添加浏览器前缀</span><br><span class="line">C.使用条件注释针对不同的浏览器引入单独的样式表</span><br><span class="line">D.使用已经处理好兼容问题的库，比如BootStrap</span><br><span class="line">E.渐进增强(progressive enhancement): 针对低版本浏览器进行构建页面，保证最基本的功能，然后再针对高级浏览器进行效果、交互等改进和追加功能达到更好的用户体验</span><br><span class="line">F.优雅降级 (graceful degradation): Web站点在所有新式浏览器中都能正常工作，然后再针对低版本浏览器进行兼容。</span><br><span class="line">G.使用CSS hack技术做样式兼容</span><br></pre></td></tr></table></figure>
+
+<h3 id="常见的兼容性问题"><a href="#常见的兼容性问题" class="headerlink" title="常见的兼容性问题"></a>常见的兼容性问题</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">display:inline-block（IE7及以下不支持）</span><br><span class="line">需要对低版本IE特殊处理：&#123;<span class="attr">display</span>:inline-block;display:inline;zoom:<span class="number">1</span>;&#125;</span><br><span class="line"></span><br><span class="line">display:inline-block 什么时候会显示间隙？怎样消除间隙？</span><br><span class="line">父元素font-size设置成<span class="number">0</span>，子元素重新设置font-size</span><br><span class="line"></span><br><span class="line">display:inline-block滥用容易出现布局方面的问题，尤其在左中右、左右等布局方面的问题尤为突出。因此如果是左右布局的话，尽量都用浮动来代替</span><br><span class="line"></span><br><span class="line">z-index在IE7及以下版本的话，有时会发现不是谁z-index设置的越高谁就显示在最上面。碰到这种问题需要设置父元素有相对定位属性元素的z-index。先比较父元素的z-index再比较子元素的</span><br><span class="line"></span><br><span class="line">IE6双边距：IE6中，元素向左浮动并且设置了左侧的外边距出现了这样的双边距bug。同理，元素向右浮动并且设置右边距也会出现同样的情况。同一行如果有多个浮动元素，第一个浮动元素会出现这个双边距bug，其它的浮动元素则不会。只需要给浮动元素加上display:inline;这样的CSS属性就可以了。</span><br><span class="line"></span><br><span class="line">margin-top，margin-bottom的bug</span><br><span class="line">父元素的第一个子元素设置了margin-top,会作用于父元素（值为父元素的margin-top与该margin-top两者中的最大值)，而子元素和父元素的边距则没有发生变化。</span><br><span class="line"></span><br><span class="line">超链接访问之后hover样式不出现了，被点击后也不具有active和hover样式。</span><br><span class="line">方法：按照顺序写 ：a:link&#123;   &#125;  a:visited&#123;  &#125; a:hover&#123;  &#125; a:active&#123;   &#125;</span><br><span class="line"></span><br><span class="line">IE没有办法定义<span class="number">1</span>像素左右的宽度容器（IE6默认的行高造成的，使用over:hidden,<span class="attr">zoom</span>:<span class="number">0.08</span>;line-height:<span class="number">1</span>px）</span><br><span class="line"></span><br><span class="line">IE5<span class="number">-8</span>不支持opacity</span><br><span class="line">方法：</span><br><span class="line">.opacity&#123;</span><br><span class="line">    opacity:<span class="number">0.4</span>,</span><br><span class="line">    filter:alpha(opacity=<span class="number">60</span>);</span><br><span class="line">    -ms-filter:<span class="string">"progid:DXImageTransform.Microsoft.Alpha(Opacity=60)"</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">IE6不支持PNG透明管背景色，IE6下使用gif图片,png24的图片在ie6浏览器上显示背景色，做成png8的</span><br><span class="line"></span><br><span class="line">IE下even对象只有x,y属性，但是没有pagex和pagey属性，火狐只有pagex pagey属性。</span><br><span class="line"></span><br><span class="line">谷歌下默认会将小于<span class="number">12</span>px的文本设置按照<span class="number">12</span>px显示，可是通过加入-webkit-text-size-adjust:none;</span><br></pre></td></tr></table></figure>
+
+<h2 id="附录：重排和重绘的操作"><a href="#附录：重排和重绘的操作" class="headerlink" title="附录：重排和重绘的操作"></a>附录：重排和重绘的操作</h2><h3 id="重排的操作"><a href="#重排的操作" class="headerlink" title="重排的操作"></a>重排的操作</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">width	height	padding	margin</span><br><span class="line">display	border-width	border	top</span><br><span class="line">position	font-size	float	text-align</span><br><span class="line">overflow-y	font-weight	overflow	left</span><br><span class="line">font-family	line-height	vertical-align	right</span><br><span class="line">clear	white-space	bottom	min-height</span><br><span class="line">offsetTop  offsetLeft  offsetWidth   offsetHeight</span><br><span class="line">scrollTop   scrollLeft  scrollWidth   scrollHeight</span><br><span class="line">clientTop   clientLeft   clientWidth  clientHeight </span><br><span class="line">getComputedStyle()    (currentStyle <span class="keyword">in</span> IE)</span><br></pre></td></tr></table></figure>
+
+<h3 id="重绘的操作"><a href="#重绘的操作" class="headerlink" title="重绘的操作"></a>重绘的操作</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">	color	border-style	visibility	background</span><br><span class="line">text-decoration	background-image	background-position	background-repeat</span><br><span class="line">outline-color	outline	outline-style	border-radius</span><br><span class="line">outline-width	box-shadow	background-size</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/11/12/React-Hook/" rel="next" title="React-Hook">
+                <i class="fa fa-chevron-left"></i> React-Hook
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/02/17/Vuex使用详解/" rel="prev" title="Vuex使用详解">
+                Vuex使用详解 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/son.jpg" alt="Jason">
+            
+              <p class="site-author-name" itemprop="name">Jason</p>
+              <p class="site-description motion-element" itemprop="description">码农的春夏秋冬</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://jasonms0.github.io" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="http://www.zhihu.com/people/jasonms0" target="_blank" title="知乎">
+                      
+                        <i class="fa fa-fw fa-globe"></i>知乎</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前端性能优化"><span class="nav-number">1.</span> <span class="nav-text">前端性能优化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#减少http请求数量和体积"><span class="nav-number">1.1.</span> <span class="nav-text">减少http请求数量和体积</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#css和script的位置"><span class="nav-number">1.2.</span> <span class="nav-text">css和script的位置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DOM操作优化"><span class="nav-number">1.3.</span> <span class="nav-text">DOM操作优化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CSS选择符优化"><span class="nav-number">1.4.</span> <span class="nav-text">CSS选择符优化</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTML常见兼容性问题"><span class="nav-number">2.</span> <span class="nav-text">HTML常见兼容性问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#IE不支持h5新标签和c3媒体查询的问题"><span class="nav-number">2.1.</span> <span class="nav-text">IE不支持h5新标签和c3媒体查询的问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#js代码兼容性问题"><span class="nav-number">2.2.</span> <span class="nav-text">js代码兼容性问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#css兼容性问题"><span class="nav-number">2.3.</span> <span class="nav-text">css兼容性问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#常见的兼容性问题"><span class="nav-number">2.4.</span> <span class="nav-text">常见的兼容性问题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#附录：重排和重绘的操作"><span class="nav-number">3.</span> <span class="nav-text">附录：重排和重绘的操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#重排的操作"><span class="nav-number">3.1.</span> <span class="nav-text">重排的操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#重绘的操作"><span class="nav-number">3.2.</span> <span class="nav-text">重绘的操作</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jason</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

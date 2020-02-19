@@ -309,7 +309,7 @@
 <h3 id="组合继承-1"><a href="#组合继承-1" class="headerlink" title="组合继承"></a>组合继承</h3><p>既继承属性又集成方法</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params">name,age</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.name = name;</span><br><span class="line">    <span class="keyword">this</span>.age = age;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Person.prototype.say = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"say方法"</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Student</span>(<span class="params">name,age,gender</span>)</span>&#123;</span><br><span class="line">    <span class="comment">//构造函数属性继承</span></span><br><span class="line">    Person.call(<span class="keyword">this</span>,name,age);</span><br><span class="line">    <span class="keyword">this</span>.gender = gender;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//原型继承</span></span><br><span class="line">Student.prototype = <span class="keyword">new</span> Person();</span><br><span class="line"></span><br><span class="line"><span class="comment">//构造函数继承只继承属性</span></span><br><span class="line"><span class="comment">//原型继承继承方法</span></span><br></pre></td></tr></table></figure>
 
-<p><img src="..%5Cimages%5Cproto.jpg" alt="proto"></p>
+<p><img src="/2019/04/18/原型、原型链及继承/..%5Cimages%5Cproto.jpg" alt="proto"></p>
 <h2 id="附录：数组去重"><a href="#附录：数组去重" class="headerlink" title="附录：数组去重"></a>附录：数组去重</h2><h3 id="利用ES6-Set去重（ES6中最常用）"><a href="#利用ES6-Set去重（ES6中最常用）" class="headerlink" title="利用ES6 Set去重（ES6中最常用）"></a>利用ES6 Set去重（ES6中最常用）</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">unique</span> (<span class="params">arr</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">Array</span>.from(<span class="keyword">new</span> <span class="built_in">Set</span>(arr))</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>,<span class="number">1</span>,<span class="string">'true'</span>,<span class="string">'true'</span>,<span class="literal">true</span>,<span class="literal">true</span>,<span class="number">15</span>,<span class="number">15</span>,<span class="literal">false</span>,<span class="literal">false</span>, <span class="literal">undefined</span>,<span class="literal">undefined</span>, <span class="literal">null</span>,<span class="literal">null</span>, <span class="literal">NaN</span>, <span class="literal">NaN</span>,<span class="string">'NaN'</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="string">'a'</span>, <span class="string">'a'</span>,&#123;&#125;,&#123;&#125;];</span><br><span class="line"><span class="built_in">console</span>.log(unique(arr))</span><br><span class="line"> <span class="comment">//[1, "true", true, 15, false, undefined, null, NaN, "NaN", 0, "a", &#123;&#125;, &#123;&#125;]</span></span><br></pre></td></tr></table></figure>
 
 <p>不考虑兼容性，这种去重的方法代码最少。这种方法还无法去掉“{}”空对象，后面的高阶方法会添加去掉重复“{}”的方法。</p>
@@ -367,8 +367,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/11/12/React-Hook/" rel="prev" title="React-Hook">
-                React-Hook <i class="fa fa-chevron-right"></i>
+              <a href="/2019/06/16/MVVM和MVC的区别/" rel="prev" title="MVVM和MVC的区别">
+                MVVM和MVC的区别 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -448,7 +448,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">8</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
