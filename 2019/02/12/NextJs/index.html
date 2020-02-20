@@ -81,23 +81,23 @@
 
 <meta name="description" content="next.js基础使用next.js简介next.js作为一款轻量级的应用框架，主要用于构建静态网站端渲染网站。 框架特点 使用后端渲染 自动进行代码分割（code splitting），以获得更快的网页加载速度 简洁的前端路由实现 使用webpack进行构建，支持模块热更新（Hot Module Replacement） 可与主流Node服务器进行对接（如express） 可自定义babel和w">
 <meta property="og:type" content="article">
-<meta property="og:title" content="NextJs">
+<meta property="og:title" content="杰森的个人微博">
 <meta property="og:url" content="http://yoursite.com/2019/02/12/NextJs/index.html">
 <meta property="og:site_name" content="杰森的个人微博">
 <meta property="og:description" content="next.js基础使用next.js简介next.js作为一款轻量级的应用框架，主要用于构建静态网站端渲染网站。 框架特点 使用后端渲染 自动进行代码分割（code splitting），以获得更快的网页加载速度 简洁的前端路由实现 使用webpack进行构建，支持模块热更新（Hot Module Replacement） 可与主流Node服务器进行对接（如express） 可自定义babel和w">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://yoursite.com/2019/02/12/NextJs/images%5Cpart1.png">
-<meta property="og:image" content="http://yoursite.com/2019/02/12/NextJs/images%5Cpart2.png">
-<meta property="og:image" content="http://yoursite.com/2019/02/12/NextJs/images%5Cpart3.png">
-<meta property="og:image" content="http://yoursite.com/2019/02/12/NextJs/images%5Cpart4.png">
-<meta property="og:image" content="http://yoursite.com/2019/02/12/NextJs/images%5Cpart5.png">
-<meta property="og:image" content="http://yoursite.com/2019/02/12/NextJs/images%5Cpart6.png">
-<meta property="og:image" content="http://yoursite.com/2019/02/12/NextJs/images%5Cpart7.png">
-<meta property="og:updated_time" content="2020-02-18T14:34:40.250Z">
+<meta property="og:image" content="http://yoursite.com/2019/02/12/NextJs/part1.png">
+<meta property="og:image" content="http://yoursite.com/2019/02/12/NextJs/part2.png">
+<meta property="og:image" content="http://yoursite.com/2019/02/12/NextJs/part3.png">
+<meta property="og:image" content="http://yoursite.com/2019/02/12/NextJs/part4.png">
+<meta property="og:image" content="http://yoursite.com/2019/02/12/NextJs/part5.png">
+<meta property="og:image" content="http://yoursite.com/2019/02/12/NextJs/part6.png">
+<meta property="og:image" content="http://yoursite.com/2019/02/12/NextJs/part7.png">
+<meta property="og:updated_time" content="2020-02-20T10:59:36.769Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="NextJs">
+<meta name="twitter:title" content="杰森的个人微博">
 <meta name="twitter:description" content="next.js基础使用next.js简介next.js作为一款轻量级的应用框架，主要用于构建静态网站端渲染网站。 框架特点 使用后端渲染 自动进行代码分割（code splitting），以获得更快的网页加载速度 简洁的前端路由实现 使用webpack进行构建，支持模块热更新（Hot Module Replacement） 可与主流Node服务器进行对接（如express） 可自定义babel和w">
-<meta name="twitter:image" content="http://yoursite.com/2019/02/12/NextJs/images%5Cpart1.png">
+<meta name="twitter:image" content="http://yoursite.com/2019/02/12/NextJs/part1.png">
 
 
 
@@ -133,7 +133,7 @@
 
 
 
-  <title>NextJs | 杰森的个人微博</title>
+  <title> | 杰森的个人微博</title>
   
 
 
@@ -257,7 +257,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">NextJs</h1>
+          <h1 class="post-title" itemprop="name headline"></h1>
         
 
         <div class="post-meta">
@@ -337,7 +337,7 @@
 <h4 id="运行"><a href="#运行" class="headerlink" title="运行"></a>运行</h4><figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm run next</span><br></pre></td></tr></table></figure>
 
 <p>在浏览器中打开<a href="http://localhost:3000/" target="_blank" rel="noopener">http://localhost:3000/</a>，网页显示如下： </p>
-<p><img src="/2019/02/12/NextJs/images%5Cpart1.png" alt="part1">u7</p>
+<p><img src="/2019/02/12/NextJs/part1.png" alt="part1">u7</p>
 <p>这样就完成了一个最简单的网站。</p>
 <h3 id="前端路由"><a href="#前端路由" class="headerlink" title="前端路由"></a>前端路由</h3><p>next.js前端路由的使用方式非常简单，我们先增加一个page，叫about，内容如下：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> About = <span class="function"><span class="params">()</span> =&gt;</span> (</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">        &lt;p&gt;This is About page&lt;<span class="regexp">/p&gt;</span></span><br><span class="line"><span class="regexp">    &lt;/</span>div&gt;</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> About;</span><br></pre></td></tr></table></figure>
@@ -348,8 +348,8 @@
 <p>next.js使用next/link实现页面之间的跳转，用法如下：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> Link <span class="keyword">from</span> <span class="string">'next/link'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> Index = <span class="function"><span class="params">()</span> =&gt;</span> (</span><br><span class="line">  &lt;div&gt;</span><br><span class="line">    &lt;Link href=<span class="string">"/about"</span>&gt;</span><br><span class="line">      &lt;a&gt;About Page&lt;<span class="regexp">/a&gt;</span></span><br><span class="line"><span class="regexp">    &lt;/</span>Link&gt;</span><br><span class="line">    &lt;p&gt;Hello next.js&lt;<span class="regexp">/p&gt;</span></span><br><span class="line"><span class="regexp">  &lt;/</span>div&gt;</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> Index</span><br></pre></td></tr></table></figure>
 
-<p><img src="/2019/02/12/NextJs/images%5Cpart2.png" alt="part2"></p>
-<p><img src="/2019/02/12/NextJs/images%5Cpart3.png" alt="part3"></p>
+<p><img src="/2019/02/12/NextJs/part2.png" alt="part2"></p>
+<p><img src="/2019/02/12/NextJs/part3.png" alt="part3"></p>
 <p><strong>Link标签支持任意react组件作为其子元素，不一定要用a标签，只要该子元素能响应onClick事件</strong>，就像下面这样：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;Link href=<span class="string">"/about"</span>&gt;</span><br><span class="line">    &lt;div&gt;Go about page&lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>Link&gt;</span><br></pre></td></tr></table></figure>
 
@@ -386,11 +386,11 @@
 <h4 id="无状态组件定义getInitialProps"><a href="#无状态组件定义getInitialProps" class="headerlink" title="无状态组件定义getInitialProps"></a>无状态组件定义getInitialProps</h4><p>然后我们修改<code>index.js</code>如下：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> Link <span class="keyword">from</span> <span class="string">'next/link'</span>;</span><br><span class="line"><span class="keyword">import</span> Layout <span class="keyword">from</span> <span class="string">'../components/Layout'</span>;</span><br><span class="line"><span class="keyword">import</span> fetch <span class="keyword">from</span> <span class="string">'isomorphic-unfetch'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> Index = <span class="function">(<span class="params">props</span>) =&gt;</span> (</span><br><span class="line">    &lt;Layout&gt;</span><br><span class="line">        &lt;h1&gt;Marvel TV Shows&lt;<span class="regexp">/h1&gt;</span></span><br><span class="line"><span class="regexp">        &lt;ul&gt;</span></span><br><span class="line"><span class="regexp">            &#123;props.shows.map((&#123; show &#125;) =&gt; &#123;</span></span><br><span class="line"><span class="regexp">                return (</span></span><br><span class="line"><span class="regexp">                    &lt;li key=&#123;show.id&#125;&gt;</span></span><br><span class="line"><span class="regexp">                        &lt;Link href=&#123;`/</span>post?id=$&#123;show.id&#125;<span class="string">`&#125;&gt;</span></span><br><span class="line"><span class="string">                            &lt;a&gt;&#123;show.name&#125;&lt;/a&gt;</span></span><br><span class="line"><span class="string">                        &lt;/Link&gt;</span></span><br><span class="line"><span class="string">                    &lt;/li&gt;</span></span><br><span class="line"><span class="string">                );</span></span><br><span class="line"><span class="string">            &#125;)&#125;</span></span><br><span class="line"><span class="string">        &lt;/ul&gt;</span></span><br><span class="line"><span class="string">    &lt;/Layout&gt;</span></span><br><span class="line"><span class="string">);</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Index.getInitialProps = async function () &#123;</span></span><br><span class="line"><span class="string">    const res = await fetch('https://api.tvmaze.com/search/shows?q=marvel');</span></span><br><span class="line"><span class="string">    const data = await res.json();</span></span><br><span class="line"><span class="string">    return &#123;</span></span><br><span class="line"><span class="string">        shows: data</span></span><br><span class="line"><span class="string">    &#125;</span></span><br><span class="line"><span class="string">&#125;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">export default Index;</span></span><br></pre></td></tr></table></figure>
 
-<p><img src="/2019/02/12/NextJs/images%5Cpart4.png" alt="part4"></p>
+<p><img src="/2019/02/12/NextJs/part4.png" alt="part4"></p>
 <h4 id="有状态组件定义getInitialProps"><a href="#有状态组件定义getInitialProps" class="headerlink" title="有状态组件定义getInitialProps"></a>有状态组件定义getInitialProps</h4><p>我们在<code>getInitialProps</code>中获取到电视节目的数据并返回，将id作为参数去获取电视节目的详细内容，接下来修改<code>post.js</code>的内容为：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> Layout <span class="keyword">from</span> <span class="string">'../components/Layout'</span>;</span><br><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span></span><br><span class="line"><span class="keyword">import</span> fetch <span class="keyword">from</span> <span class="string">'isomorphic-unfetch'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="class"><span class="keyword">class</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">async</span> getInitialProps(context) &#123;</span><br><span class="line">        <span class="keyword">const</span> &#123; id &#125; = context.query;</span><br><span class="line">        <span class="keyword">const</span> res = <span class="keyword">await</span> fetch(<span class="string">`https://api.tvmaze.com/shows/<span class="subst">$&#123;id&#125;</span>`</span>);</span><br><span class="line">        <span class="keyword">const</span> show = <span class="keyword">await</span> res.json();</span><br><span class="line">        <span class="keyword">return</span> &#123; show &#125;;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    render() &#123;</span><br><span class="line">        <span class="keyword">return</span> (</span><br><span class="line">            &lt;Layout&gt;</span><br><span class="line">                &lt;h1&gt;&#123;<span class="keyword">this</span>.props.show.name&#125;&lt;<span class="regexp">/h1&gt;</span></span><br><span class="line"><span class="regexp">                &lt;p&gt;&#123;this.props.show.summary.replace(/</span>&lt;[/]?p&gt;/g, '')&#125;&lt;/p&gt;</span><br><span class="line">                &lt;img src=&#123;<span class="keyword">this</span>.props.show.image.medium&#125; /&gt;</span><br><span class="line">            &lt;<span class="regexp">/Layout&gt;</span></span><br><span class="line"><span class="regexp">        )</span></span><br><span class="line"><span class="regexp">    &#125;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br></pre></td></tr></table></figure>
 
-<p><img src="/2019/02/12/NextJs/images%5Cpart5.png" alt="part5"></p>
+<p><img src="/2019/02/12/NextJs/part5.png" alt="part5"></p>
 <p>当页面渲染时加载数据，我们使用了一个异步方法<code>getInitialProps</code>。它能异步获取 JS 普通对象，并绑定在<code>props</code>上</p>
 <p>当服务渲染时，<code>getInitialProps</code>将会把数据序列化，就像<code>JSON.stringify</code>。所以确保<code>getInitialProps</code>返回的是一个普通 JS 对象，而不是<code>Date</code>, <code>Map</code> 或 <code>Set</code>类型。</p>
 <p>当页面初始化加载时，<code>getInitialProps</code>只会加载在服务端。只有当路由跳转（<code>Link</code>组件跳转或 API 方法跳转）时，客户端才会执行<code>getInitialProps</code>。</p>
@@ -412,7 +412,7 @@
 <p>​</p>
 </li>
 </ul>
-<p><img src="/2019/02/12/NextJs/images%5Cpart6.png" alt="part6"></p>
+<p><img src="/2019/02/12/NextJs/part6.png" alt="part6"></p>
 <h3 id="样式加载"><a href="#样式加载" class="headerlink" title="样式加载"></a>样式加载</h3><p>对于React应用，有多种方式可以增加样式。主要分为两种： </p>
 <ol>
 <li>使用传统CSS文件（包括SASS，PostCSS等） </li>
@@ -426,7 +426,7 @@
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> Link <span class="keyword">from</span> <span class="string">'next/link'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> Header = <span class="function"><span class="params">()</span> =&gt;</span> (</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">        &lt;Link href=<span class="string">"/"</span>&gt;</span><br><span class="line">            &lt;a&gt;Home&lt;<span class="regexp">/a&gt;</span></span><br><span class="line"><span class="regexp">        &lt;/</span>Link&gt;</span><br><span class="line">        &lt;Link href=<span class="string">"/about"</span>&gt;</span><br><span class="line">            &lt;a&gt;About&lt;<span class="regexp">/a&gt;</span></span><br><span class="line"><span class="regexp">        &lt;/</span>Link&gt;</span><br><span class="line">        &lt;style jsx&gt;</span><br><span class="line">            &#123;<span class="string">`</span></span><br><span class="line"><span class="string">                a&#123;</span></span><br><span class="line"><span class="string">                    color:#EF141F;</span></span><br><span class="line"><span class="string">                    font-size:26px;</span></span><br><span class="line"><span class="string">                    line-height:40px;</span></span><br><span class="line"><span class="string">                    text-decoration:none;</span></span><br><span class="line"><span class="string">                    padding:0 10px;</span></span><br><span class="line"><span class="string">                    text-transform:uppercase;</span></span><br><span class="line"><span class="string">                &#125;</span></span><br><span class="line"><span class="string">                a:hover&#123;</span></span><br><span class="line"><span class="string">                    opacity:0.8;</span></span><br><span class="line"><span class="string">                &#125;</span></span><br><span class="line"><span class="string">            `</span>&#125;</span><br><span class="line">        &lt;<span class="regexp">/style&gt;</span></span><br><span class="line"><span class="regexp">    &lt;/</span>div&gt;</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> Header;</span><br></pre></td></tr></table></figure>
 
 <p>运行项目，首页变成： </p>
-<p><img src="/2019/02/12/NextJs/images%5Cpart7.png" alt="part7"></p>
+<p><img src="/2019/02/12/NextJs/part7.png" alt="part7"></p>
 <h4 id="全局样式"><a href="#全局样式" class="headerlink" title="全局样式"></a>全局样式</h4><p>当我们需要添加一些全局的样式，比如rest.css或者鼠标悬浮在a标签上时出现下划线，这时候我们只需要在<code>style-jsx</code>标签上增加<code>global</code>关键词就行了，我们修改<code>Layout.js</code>如下：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> Header <span class="keyword">from</span> <span class="string">'./Header'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> layoutStyle = &#123;</span><br><span class="line">    margin: <span class="number">20</span>,</span><br><span class="line">    padding: <span class="number">20</span>,</span><br><span class="line">    border: <span class="string">'1px solid #DDD'</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> Layout = <span class="function">(<span class="params">props</span>) =&gt;</span> (</span><br><span class="line">    &lt;div style=&#123;layoutStyle&#125;&gt;</span><br><span class="line">        &lt;Header /&gt;</span><br><span class="line">        &#123;props.children&#125;</span><br><span class="line">        &lt;style jsx global&gt;</span><br><span class="line">            &#123;<span class="string">`</span></span><br><span class="line"><span class="string">                a:hover&#123;</span></span><br><span class="line"><span class="string">                    text-decoration:underline;</span></span><br><span class="line"><span class="string">                &#125;</span></span><br><span class="line"><span class="string">            `</span>&#125;</span><br><span class="line">        &lt;<span class="regexp">/style&gt;</span></span><br><span class="line"><span class="regexp">    &lt;/</span>div&gt;</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> Layout</span><br></pre></td></tr></table></figure>
 
@@ -574,7 +574,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-count">9</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
